@@ -2,7 +2,8 @@
     background-color: white ;
     padding: 0 30px 20px;
     border: none;
-    color: black;
+    color: black;   
+    outline: none;
 }
 
 #update {

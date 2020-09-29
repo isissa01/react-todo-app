@@ -14,7 +14,15 @@ function App() {
     //this code fires when the app loads
     db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot =>{
       // console.log(snapshot.docs.map(doc => doc.data().todo));
-      setTodos(snapshot.docs.map(doc => ({id: doc.id ,todo: doc.data().todo})))
+      // if(snapshot.docs.exists){
+        setTodos(snapshot.docs.map(doc => ({id: doc.id , ...doc.data()})))
+        // console.log(snapshot.docs[0].data().timestamp);
+      // }
+
+      // console.log(snapshot.exists)
+      
+
+      
     });
     return () => {
       
@@ -30,7 +38,7 @@ function App() {
     }
     db.collection('todos').add({
       todo: input,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      timestamp: new Date().toLocaleDateString()
     });
     // setTodos(todos.concat(input));
     setInput('');

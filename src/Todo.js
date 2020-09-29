@@ -12,20 +12,16 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor: 'rgba(0,0,0,0.7)'
     },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
+
   }));
 function Todo(props) {
     const [open, setOpen] = useState(false);
     const handleOpen = () =>{
         setOpen(true);
     };
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState(props.todo.todo);
     const classes = useStyles();
     return (
         
@@ -40,7 +36,7 @@ function Todo(props) {
             <div id="update_modal">
                 <h1>Edit your todo</h1>
                 <form>
-                <TextField id="input" placeholder= {props.todo.todo} label="Update todo"value = {input} color="secondary" onChange={event =>setInput(event.target.value)} />
+                <TextField id="input" label="Update todo"value = {input} color="secondary" onChange={event =>setInput(event.target.value)} />
                 <Button id="update" type='submit' disabled= {!input } onClick= {e => {
                     e.preventDefault();
                     db.collection('todos').doc(props.todo.id).update({todo: input});
@@ -62,7 +58,7 @@ function Todo(props) {
         <ListItem button key={props.todo.id}>
         <ListItemIcon>
         </ListItemIcon>
-            <ListItemText secondary="08/21/2021" primary={props.todo.todo} />
+            <ListItemText secondary={props.todo.timestamp} primary={props.todo.todo} />
             <EditIcon id= "edit" onClick= {e => setOpen(true)}/>
             <DeleteForeverIcon id="cancel" onClick={ event => db.collection('todos').doc(props.todo.id).delete()}/>
         </ListItem>
