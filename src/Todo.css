@@ -1,0 +1,33 @@
+#update_modal{
+    background-color: white ;
+    padding: 0 30px 20px;
+    border: none;
+    color: black;
+}
+
+#update {
+    color: green;
+
+}
+#update:disabled {
+    color: grey;
+
+}
+#cancel{
+    color: red;
+}
+#edit{
+    color: #3f51b5;
+}
+/* label.MuiInputLabel-formControl, div.MuiInput-underline, input.MuiInputBase-input, label#input-label{
+    color: white;
+}
+.MuiInput-underline:before, .MuiInput-underline{
+    border-bottom-color: white;
+}
+.MuiInput-underline:after{
+    border-bottom-color: white;
+}
+.MuiInput-underline:hover{
+    border-bottom-color: white;
+} */
